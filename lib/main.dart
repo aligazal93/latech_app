@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:latech_app/constains.dart';
+import 'package:latech_app/core/dio_helper/dio_helper.dart';
 import 'package:latech_app/features/splash/view.dart';
 import 'package:latech_app/widgets/pop_scaffold.dart';
 
 import 'core/app_router/router.dart';
 
-void main() {
+// algazzar.abdelrahman123456@gmail.com
+
+void main()  {
+  DioHelper.init();
   runApp(const MyApp());
 }
 
