@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:latech_app/constains.dart';
+import 'package:latech_app/core/app_storage/app_storage.dart';
 import 'package:latech_app/core/dio_helper/dio_helper.dart';
 import 'package:latech_app/features/splash/view.dart';
 import 'package:latech_app/widgets/pop_scaffold.dart';
 
 import 'core/app_router/router.dart';
 
-// algazzar.abdelrahman123456@gmail.com
+// aligazal93@gmail.com
+// 123456789
 
-void main()  {
+void main() async {
+  await AppStorage.init();
   DioHelper.init();
   runApp(const MyApp());
 }
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'LaTech App',
       theme: theme,
       builder: (context, child) => PopScaffold(child: child!),
-      home: SplashView(),
+      home: AppStorage.isLogged ? SizedBox() : SplashView(),
     );
   }
 }
