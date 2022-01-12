@@ -6,6 +6,7 @@ import 'package:latech_app/features/splash/view.dart';
 import 'package:latech_app/widgets/pop_scaffold.dart';
 
 import 'core/app_router/router.dart';
+import 'features/nav_bar/view.dart';
 
 // aligazal93@gmail.com
 // 123456789
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'LaTech App',
       theme: theme,
       builder: (context, child) => PopScaffold(child: child!),
-      home: AppStorage.isLogged ? SizedBox() : SplashView(),
+      home: NavBarView(),
     );
   }
 }

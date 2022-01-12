@@ -5,6 +5,7 @@ import 'package:latech_app/core/app_storage/app_storage.dart';
 import 'package:latech_app/core/dio_helper/dio_helper.dart';
 import 'package:latech_app/core/models/user.dart';
 import 'package:latech_app/features/login/cubit/states.dart';
+import 'package:latech_app/features/nav_bar/view.dart';
 import 'package:latech_app/widgets/snack_bar.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
@@ -31,7 +32,7 @@ class LoginCubit extends Cubit<LoginStates> {
         // await AppStorage.cacheToken(data['data']['token']);
         // await AppStorage.cacheEmailAddress(data['data']['email']);
 
-        MagicRouter.navigateAndPopAll(SizedBox());
+        MagicRouter.navigateAndPopAll(NavBarView());
       } else {
         showSnackBar(data['message']);
       }
