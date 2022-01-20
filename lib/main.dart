@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:latech_app/constains.dart';
 import 'package:latech_app/core/app_storage/app_storage.dart';
@@ -14,6 +16,7 @@ import 'features/nav_bar/view.dart';
 void main() async {
   await AppStorage.init();
   DioHelper.init();
+  print(AppStorage.userInfo.token);
   runApp(const MyApp());
 }
 
@@ -29,8 +32,9 @@ class MyApp extends StatelessWidget {
       title: 'LaTech App',
       theme: theme,
       builder: (context, child) => PopScaffold(child: child!),
-      home: NavBarView(),
+      home: AppStorage.isLogged ? NavBarView() : SplashView(),
     );
   }
 }
+
 

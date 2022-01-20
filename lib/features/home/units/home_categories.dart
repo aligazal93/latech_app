@@ -33,23 +33,23 @@ class MiniCategories extends StatelessWidget {
           ),
         ),
         InkWell(
-          onTap: () {},
+          onTap: () => MagicRouter.navigateTo(CategoriesView()),
           child: Column(
             children: [
               Container(
-                  // margin: EdgeInsets.only(top: 20, bottom: 10),
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Color(0XFFE0ECF8),
-                      borderRadius: BorderRadius.circular(150)),
-                  // height: 45,
-                  child: Icon(
-                    Icons.star,
-                    color: Color(0XFF0001FC),
-                  )),
-              SizedBox(height: 5,),
+                margin: EdgeInsets.only(top: 20, bottom: 10),
+                width: 45,
+                decoration: BoxDecoration(
+                    color: Color(0XFFE0ECF8),
+                    borderRadius: BorderRadius.circular(150)),
+                height: 45,
+                child: Icon(
+                  Icons.star,
+                  color: Color(0XFF0001FC),
+                ),
+              ),
               Text(
-                'Favourites',
+                'Favouries',
                 style: TextStyle(
                     color: Color(0XFF0001FC), fontWeight: FontWeight.bold),
               )

@@ -4,13 +4,15 @@ import 'package:latech_app/core/app_router/router.dart';
 import 'package:latech_app/features/category_details/view.dart';
 
 class CategoryTile extends StatelessWidget {
-  const CategoryTile({Key? key, this.title}) : super(key: key);
+  const CategoryTile({Key? key, this.title, this.id}) : super(key: key);
   final String? title;
+  final int? id;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        MagicRouter.navigateTo(detailsOfCategory());
+        MagicRouter.navigateTo(detailsOfCategory(id: id,title: title,));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -20,7 +22,7 @@ class CategoryTile extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
         padding: EdgeInsets.all(20),
         width: sizeFromWidth(1),
-        child: Text(title.toString(),style: TextStyle(fontWeight: FontWeight.w700,color: kAccentColor,fontSize: 20),),
+        child: Text(title.toString(),style: TextStyle(fontWeight: FontWeight.w700,color: kAccentColor,fontSize: 18),),
       ),
     );
   }

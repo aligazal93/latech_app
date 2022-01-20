@@ -1,11 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latech_app/constains.dart';
 import 'package:latech_app/core/app_router/router.dart';
+import 'package:latech_app/features/home/cubit/cubit.dart';
 import 'package:latech_app/features/home/view.dart';
 import 'package:latech_app/features/login/view.dart';
 import 'package:latech_app/features/home/units/sales_section.dart';
 import 'package:latech_app/features/home/units/slider_section.dart';
+import 'package:latech_app/features/search/view.dart';
 import 'package:latech_app/widgets/app_bar.dart';
 import 'package:latech_app/widgets/app_bar2.dart';
 import 'package:latech_app/widgets/navigator_bottom.dart';
@@ -21,9 +24,10 @@ class NavBarView extends StatefulWidget {
 class _NavBarViewState extends State<NavBarView> {
   int _currentIndex = 0;
 
+
   final pages = [
     HomeView(),
-    Text('Search'),
+    SearchView(),
     Text('Cart'),
     Text('Profile'),
   ];
@@ -33,14 +37,16 @@ class _NavBarViewState extends State<NavBarView> {
       _currentIndex = value;
     });
   }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFFDFEFF),
-      appBar: appBar2('Home'),
-      bottomNavigationBar: BottomNavigatePages(onTap: toggleTab, index: _currentIndex,),
-      body: pages[_currentIndex],
+    return BlocProvider(
+      create: (context) => HomeCubit()..getHomeData(),
+      child: Scaffold(
+        // appBar: appBar2('home'),
+        backgroundColor: Color(0xFFFDFEFF),
+        bottomNavigationBar: BottomNavigatePages(onTap: toggleTab, index: _currentIndex,),
+        body: pages[_currentIndex],
+      ),
     );
   }
 }

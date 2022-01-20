@@ -8,6 +8,6 @@ appBar2(String title) => AppBar(
   iconTheme: IconThemeData(color: kAccentColor),
   title: Text(
     title,
-    style: TextStyle(fontWeight: FontWeight.bold,color: kAccentColor,fontSize: 22),
+    style: TextStyle(fontWeight: FontWeight.bold,color: kAccentColor,fontSize: 18),
   ),
 );
