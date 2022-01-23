@@ -16,27 +16,32 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:appBar2('Home') ,
-      body: BlocBuilder<HomeCubit, HomeStates>(
-        builder: (context, state) => state is HomeStateLoading ? LoadingIndicator() : ListView(
-          children: [
-            SliderSection(),
-            MiniCategories(),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25),
-              child: Text(
-                'Sales',
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: kAccentColor,
-                  fontSize: 26,
+      body: RefreshIndicator(
+        onRefresh: HomeCubit.get(context).getHomeData,
+        backgroundColor: kPrimaryColor,
+        color: Colors.white,
+        child: BlocBuilder<HomeCubit, HomeStates>(
+          builder: (context, state) => state is HomeStateLoading ? LoadingIndicator() : ListView(
+            children: [
+              SliderSection(),
+              MiniCategories(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 25),
+                child: Text(
+                  'Sales',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: kAccentColor,
+                    fontSize: 26,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
-            ),
-            SalesSection(),
-          ],
+              SalesSection(),
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latech_app/core/dio_helper/dio_helper.dart';
+import 'package:latech_app/features/favorites/model.dart';
 import 'package:latech_app/features/product/cubit/states.dart';
 import 'package:latech_app/features/product/model.dart';
 import 'package:latech_app/widgets/snack_bar.dart';
@@ -31,6 +32,18 @@ class ProductCubit extends Cubit<ProductStates> {
       final response = await DioHelper.post('favorites',
           data: {'product_id' : id}
       );
+      showSnackBar(response.data['message']);
+    } catch (e) {
+      showSnackBar(e.toString());
+    }
+  }
+
+  Future<void> addCart()async{
+    try {
+      final response = await DioHelper.post('carts',
+          data: {'product_id' : id}
+      );
+      print(response.data);
       showSnackBar(response.data['message']);
     } catch (e) {
       showSnackBar(e.toString());

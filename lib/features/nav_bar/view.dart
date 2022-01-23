@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latech_app/constains.dart';
 import 'package:latech_app/core/app_router/router.dart';
+import 'package:latech_app/features/cart/view.dart';
 import 'package:latech_app/features/home/cubit/cubit.dart';
 import 'package:latech_app/features/home/view.dart';
 import 'package:latech_app/features/login/view.dart';
@@ -28,7 +29,7 @@ class _NavBarViewState extends State<NavBarView> {
   final pages = [
     HomeView(),
     SearchView(),
-    Text('Cart'),
+    CartView(),
     Text('Profile'),
   ];
 

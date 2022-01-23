@@ -8,12 +8,13 @@ import 'package:latech_app/features/product/view.dart';
 
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({Key? key, this.image, this.title, this.price, this.id,required this.isFavorites}) : super(key: key);
+  const ProductCard({Key? key, this.image, this.title, this.price, this.id,required this.isFavorites,this.inCarts}) : super(key: key);
   final String? image;
   final String? title;
   final double? price;
   final int? id;
   final bool isFavorites;
+  final bool? inCarts;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -36,6 +37,8 @@ class _ProductCardState extends State<ProductCard> {
         MagicRouter.navigateTo(ProductView(
           title: widget.title.toString(),
           id: widget.id,
+          inFavorites: widget.isFavorites,
+          inCarts: widget.inCarts,
         ));
       },
       child: Container(
@@ -62,7 +65,7 @@ class _ProductCardState extends State<ProductCard> {
             SizedBox(height: 10),
             Row(
               children: [
-                Text('Usd' , style: TextStyle(fontSize:10,fontWeight: FontWeight.w700,color: kAccentColor),),
+                Text('USD' , style: TextStyle(fontSize:10,fontWeight: FontWeight.w700,color: kAccentColor),),
                 SizedBox(width: 5),
                 Text(widget.price.toString() , style: TextStyle(fontSize:11,fontWeight: FontWeight.w700,color: kAccentColor),),
                 Spacer(),

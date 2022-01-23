@@ -8,16 +8,34 @@ import 'package:latech_app/features/product/model.dart';
 import 'package:latech_app/widgets/app_bar2.dart';
 import 'package:latech_app/widgets/loading_indicator.dart';
 
-class ProductView extends StatelessWidget {
-  ProductView({Key? key, this.title, this.id}) : super(key: key);
+class ProductView extends StatefulWidget {
+  ProductView({Key? key, this.title, this.id,required this.inFavorites,required this.inCarts}) : super(key: key);
  final String? title;
  final int? id;
+ final bool? inFavorites;
+ final bool? inCarts;
+
+  @override
+  State<ProductView> createState() => _ProductViewState();
+}
+
+class _ProductViewState extends State<ProductView> {
+  late bool isFavourite;
+  late bool inCart;
+
+
+  @override
+  void initState() {
+    isFavourite = widget.inFavorites!;
+    inCart = widget.inCarts!;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar2(''),
       body: BlocProvider(
-        create: (context) => ProductCubit(id)..getProductDetails(),
+        create: (context) => ProductCubit(widget.id)..getProductDetails(),
         child: BlocBuilder<ProductCubit , ProductStates>(
           builder: (context, state) {
             if (state is ProductLoadingState) return Scaffold(body: LoadingIndicator());
@@ -125,19 +143,35 @@ class ProductView extends StatelessWidget {
                           ),
                           elevation: 0,
                           padding: EdgeInsets.all(14),
-                          onPressed: () {},
-                          child: Text('Add To Cart',
+                          onPressed: () {
+                            ProductCubit(widget.id).addCart();
+                            setState(() {
+                              inCart = !inCart;
+                            });
+
+                          },
+                          child: Text(inCart ? 'Remove From Cart' : 'Add To Cart',
                             style: TextStyle(color: Colors.white),),
-                          color: kPrimaryColor,
+                          color:inCart ? Colors.green : kPrimaryColor,
 
                         ),
                       ),
                       Expanded(
-                        child: CircleAvatar(
-                          backgroundColor: Color(0xFFE0ECF8),
-                          radius: 24,
-                          child: Icon(
-                            Icons.star, size: 26, color: kPrimaryColor,),
+                        child: InkWell(
+                          onTap: () {
+                            ProductCubit(widget.id).toggleFavorite();
+                            setState(() {
+                              isFavourite = !isFavourite;
+                            });
+                          },
+
+
+                          child:  CircleAvatar(
+                            backgroundColor: isFavourite ? Colors.green : kPrimaryColor,
+                            radius: 24,
+                            child: Icon(
+                                Icons.star, size: 26, color: isFavourite ? Colors.white : Colors.white ),
+                          )
                         ),
                       )
                     ],

@@ -20,6 +20,7 @@ class SalesSection extends StatelessWidget {
         price: products[index].price,
         id: products[index].id,
         isFavorites: products[index].inFavorites!,
+        inCarts: products[index].inCart!,
       ),
     );
   }

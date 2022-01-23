@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:latech_app/core/app_router/router.dart';
 import 'package:latech_app/features/categories/view.dart';
+import 'package:latech_app/features/favorites/view.dart';
+import 'package:latech_app/features/home/cubit/cubit.dart';
 
 class MiniCategories extends StatelessWidget {
   @override
@@ -33,7 +35,7 @@ class MiniCategories extends StatelessWidget {
           ),
         ),
         InkWell(
-          onTap: () => MagicRouter.navigateTo(CategoriesView()),
+          onTap: () => MagicRouter.navigateTo(FavoriteView(),),
           child: Column(
             children: [
               Container(
