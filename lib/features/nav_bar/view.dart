@@ -9,6 +9,7 @@ import 'package:latech_app/features/home/view.dart';
 import 'package:latech_app/features/login/view.dart';
 import 'package:latech_app/features/home/units/sales_section.dart';
 import 'package:latech_app/features/home/units/slider_section.dart';
+import 'package:latech_app/features/profile/view.dart';
 import 'package:latech_app/features/search/view.dart';
 import 'package:latech_app/widgets/app_bar.dart';
 import 'package:latech_app/widgets/app_bar2.dart';
@@ -30,7 +31,7 @@ class _NavBarViewState extends State<NavBarView> {
     HomeView(),
     SearchView(),
     CartView(),
-    Text('Profile'),
+    ProfileView()
   ];
 
   void toggleTab(int value) {
